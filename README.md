@@ -24,7 +24,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 python app.py  
 ```
 ## API Endpoint
-**Endpoint:** `/check_compliance`  
+**Endpoint:** `http://localhost:5000/check_compliance`  
 **Method:** `POST`  
 **Content-Type:** `application/json`
 **Request Body:**
@@ -33,6 +33,15 @@ python app.py
     "page_url": "https://example.com/webpage",
     "policy_url": "https://example.com/compliance-policy"
 }
+```
+**Curl:**
+```
+curl --location 'http://localhost:5000/check_compliance' \
+--header 'Content-Type: application/json' \
+--data '{
+    "page_url": "https://mercury.com/",
+    "policy_url": "https://stripe.com/docs/treasury/marketing-treasury"
+}'
 ```
 **Response:**
 ```json
