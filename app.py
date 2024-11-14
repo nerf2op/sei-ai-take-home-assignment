@@ -46,8 +46,7 @@ def check_compliance(page_text, policy_text):
                 {"role": "user", "content": prompt}
             ],
             model="gpt-3.5-turbo",
-            temperature=0.7,
-            seed=421
+            temperature=0.7
         )
         findings = response.choices[0].message.content.strip().split("\n")
         return findings
@@ -65,7 +64,7 @@ def check_compliance_endpoint():
     page_text = fetch_webpage_text(page_url)
     policy_text = fetch_webpage_text(policy_url)
 
-    if "Error" in page_text or "Error" in policy_text:
+    if "error" in page_text.lower() or "error" in policy_text.lower():
         return jsonify({"error": "Failed to fetch webpage or policy text"}), 500
 
     findings = check_compliance(page_text, policy_text)
